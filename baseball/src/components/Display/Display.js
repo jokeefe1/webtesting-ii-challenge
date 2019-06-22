@@ -8,7 +8,6 @@ export default function Display() {
         hits,
         incBalls,
         incStrikes,
-        incFouls,
         incHits,
         resetCount,
         maxCount
@@ -17,27 +16,21 @@ export default function Display() {
     return (
         <>
             <div>
-                <h3>Balls</h3>
-                <p>{balls}</p>
+                <p>{`Ball: ${balls}`}</p>
                 <button disabled={maxCount} onClick={incBalls}>
-                    Ball
+                     Add Ball
                 </button>
             </div>
             <div>
-                <h3>Strikes</h3>
-                <p>{strikes}</p>
+                <p>Strike: {strikes}</p>
                 <button disabled={maxCount} onClick={incStrikes}>
-                    Strike
-                </button>
-                <button disabled={maxCount} onClick={incFouls}>
-                    Fouls
+                    Add Strike
                 </button>
             </div>
             <div>
-                <h3>Hit</h3>
-                <p>{hits}</p>
+                <p>Hits: {hits}</p>
                 <button disabled={maxCount} onClick={incHits}>
-                    Hit
+                    Add Hit
                 </button>
             </div>
             {balls === 4 && (
