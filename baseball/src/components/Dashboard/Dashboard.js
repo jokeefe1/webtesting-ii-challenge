@@ -1,9 +1,10 @@
 import React from 'react'
+import Display from '../Display/Display'
 
-export default function Dachboard() {
+export default function Dashboard() {
     return (
-        <div>
-            Dashboard
-        </div>
+        <>
+            <Display />
+        </>
     )
 }

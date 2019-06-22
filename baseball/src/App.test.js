@@ -13,8 +13,3 @@ it('renders without crashing', () => {
     render(<Dashboard />)
 })
 
-it('displays hello world', () => {
-    const { getByText } = render(<Display />)
-    const h3 = getByText(/Hello World/i)
-    expect(h3).toBeVisible()
-})
