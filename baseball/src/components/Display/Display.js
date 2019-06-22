@@ -6,11 +6,12 @@ export default function Display() {
         balls,
         strikes,
         hits,
-        incBall,
-        incStrike,
+        incBalls,
+        incStrikes,
+        incFouls,
         incHits,
         resetCount,
-        fullCount
+        maxCount
     } = React.useContext(CountContext)
 
     return (
@@ -18,21 +19,26 @@ export default function Display() {
             <div>
                 <h3>Balls</h3>
                 <p>{balls}</p>
-                <button disabled={fullCount} onClick={incBall}>
+                <button disabled={maxCount} onClick={incBalls}>
                     Ball
                 </button>
             </div>
             <div>
                 <h3>Strikes</h3>
                 <p>{strikes}</p>
-                <button disabled={fullCount} onClick={incStrike}>
+                <button disabled={maxCount} onClick={incStrikes}>
                     Strike
+                </button>
+                <button disabled={maxCount} onClick={incFouls}>
+                    Fouls
                 </button>
             </div>
             <div>
                 <h3>Hit</h3>
                 <p>{hits}</p>
-                <button onClick={incHits}>Hit</button>
+                <button disabled={maxCount} onClick={incHits}>
+                    Hit
+                </button>
             </div>
             {balls === 4 && (
                 <>

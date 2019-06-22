@@ -1,42 +1,75 @@
-import React from 'react'
-import './App.css'
-import Dashboard from './components/Dashboard/Dashboard'
-import { CountContext } from './contexts/CountContext'
+import React from 'react';
+import Dashboard from './components/Dashboard/Dashboard';
+import { CountContext } from './contexts/CountContext';
 
 function App() {
-    const [balls, setBalls] = React.useState(0)
-    const [strikes, setStrikes] = React.useState(0)
-    const [hits, setHits] = React.useState(0)
+    const [ count, setCount ] = React.useState({
+        balls: 0,
+        strikes: 0,
+        hits: 0
+    })
 
-    const incBall = () => balls < 4 && setBalls(prevState => prevState + 1)
-    const incStrike = () => strikes < 3 && setStrikes(prevState => prevState + 1)
-    
+    const { balls, strikes, hits } = count
+    const maxCount = balls === 4 || strikes === 3
+   
+    const incBalls = () => {
+        if (balls < 4) {
+            setCount( prevState => ({
+                ...prevState,
+                balls: balls + 1
+            }))
+        }
+    }
+  
+    const incStrikes = () => {
+        if (strikes < 3) {
+            setCount(prevState => ({
+                ...prevState,
+                strikes: strikes + 1
+            }))
+        }
+    }
+
+    const incFouls = () => {
+        if (strikes < 2) {
+            setCount(prevState => ({
+                ...prevState,
+                strikes: strikes + 1
+            }))
+        }
+    }
+
+
     const incHits = () => {
-        setHits(prevState => prevState + 1)
-        setBalls(0)
-        setStrikes(0)
+            setCount(prevState => ({
+                balls: 0,
+                strikes: 0,
+                fouls: 0,
+                hits: hits + 1
+        }))
     }
 
     const resetCount = () => {
-        setBalls(0)
-        setStrikes(0)
+        setCount(prevState => ({
+            balls: 0,
+            strikes: 0,
+            fouls: 0,
+            hits
+        }))
     }
-
-    const fullCount = balls === 4 || strikes === 3
 
     return (
         <CountContext.Provider
             value={{
                 balls,
-                setBalls,
                 strikes,
-                setStrikes,
                 hits,
+                incBalls,
+                incStrikes,
+                incFouls,
                 incHits,
-                incBall,
-                incStrike,
                 resetCount,
-                fullCount
+                maxCount
             }}
         >
             <Dashboard />
